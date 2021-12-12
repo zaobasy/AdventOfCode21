@@ -8,7 +8,7 @@ SRC=$(wildcard *.cpp)
 OBJ=$(SRC:.cpp=.o)
 DEP=$(OBJ:.o=.d)
 
-BINS=Day1 Day2
+BINS=Day1 Day2 Day3
 
 all: $(BINS)
 
@@ -19,7 +19,10 @@ Day1: Day1.o
 	g++ $(LNFLAGS) -o Day1 Day1.o 
 
 Day2: Day2.o
-	g++ $(LNFLAGS) -o Day2 Day2.o 
+	g++ $(LNFLAGS) -o Day2 Day2.o
+
+Day3: Day3.o
+	g++ $(LNFLAGS) -o Day3 Day3.o
 
 clean:
 	rm $(BINS)
