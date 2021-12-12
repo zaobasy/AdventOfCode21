@@ -28,11 +28,15 @@ ElevationMap::ElevationMap(std::string filename) {
     if (in_file.is_open()) {
         while ( in_file ) {
             in_file >> read_int;
+
+            if (!in_file.good())
+                break;
+
             _map.push_back(read_int);
         }
     }
     
-    _size = _map.size() - 1;
+    _size = _map.size();
     std::cout << "Read in " << _size << " values from file." << std::endl;
 
 }
