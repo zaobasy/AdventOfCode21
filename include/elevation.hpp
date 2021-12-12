@@ -1,16 +1,16 @@
 #include <iostream>
+#include <vector>
 
 class ElevationMap {
     public:
-        ElevationMap() {}
-        ~ElevationMap() {}
+        ElevationMap(std::vector<int>); // init from array
+        ElevationMap(std::string); // init from file
+        ~ElevationMap();
 
         int size() { return _size; }
-        int get_num_inc();
-        void init_from_file(std::string);
-        void init_from_arr(int*);
+        int get_num_inc(int x=1);
     
     private:
-        int *_map;
+        std::vector<int> _map;
         int _size;
 };
