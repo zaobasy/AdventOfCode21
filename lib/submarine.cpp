@@ -4,13 +4,14 @@
 
 #include <submarine.hpp>
 
-Submarine::Submarine(int init_horizontal, int init_depth)
+Submarine::Submarine(int init_horizontal, int init_depth, int init_aim)
     : _horizontal{init_horizontal}
-    , _depth{init_depth} 
+    , _depth{init_depth}
+    , _aim{init_aim}
 { }
 
 
-void Submarine::apply_instructions(
+void Submarine::apply_basic_instructions(
         std::vector<Instruction> in_insts
     ) {
 
@@ -34,6 +35,42 @@ void Submarine::apply_instructions(
             } 
             else if (type == "down") {
                 _depth += value;
+            } 
+            else {
+                std::cout << "Unknown instruction " << type
+                          << ", skipping this instruction."
+                          << std::endl;
+            }
+
+        }
+}
+
+
+void Submarine::apply_complex_instructions(
+        std::vector<Instruction> in_insts
+    ) {
+
+        std::string type;
+        int value;
+
+        for (
+            std::vector<Instruction>::iterator it = in_insts.begin();
+            it != in_insts.end();
+            it++
+        ) {
+
+            type = it->type;
+            value = it->value;
+
+            if (type == "forward") {
+                _horizontal += value;
+                _depth += _aim*value;
+            } 
+            else if (type == "up") {
+                _aim -= value;
+            } 
+            else if (type == "down") {
+                _aim += value;
             } 
             else {
                 std::cout << "Unknown instruction " << type
