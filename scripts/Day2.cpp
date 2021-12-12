@@ -19,14 +19,19 @@ int main() {
 	
 	test_sub.apply_instructions(test_instructions);
 	std::cout << test_sub << std::endl;
+	std::cout << "Product: " 
+			  << test_sub.get_depth()*test_sub.get_horizontal()
+			  << std::endl;
 
+	Submarine real_sub;
+	std::vector<Instruction> real_instructions;
+	std::string input_file = "/Users/noether/Documents/GitHub/AdventOfCode21/input_files/Day2-Input1.txt";
+	
+	read_instructions_from_file(input_file, &real_instructions);
+	real_sub.apply_instructions(real_instructions);
 
-/*
-	std::string input_file = "/Users/noether/Documents/GitHub/AdventOfCode21/input_files/Day1-Input1.txt";
-	ElevationMap real_elevation(input_file);
-
-	std::cout << "Real size: " << real_elevation.size() << std::endl;
-	std::cout << "Num inc on real (window = 1): " << real_elevation.get_num_inc() << std::endl;
-	std::cout << "Num inc on real (window = 3): " << real_elevation.get_num_inc(3) << std::endl;
-*/
+	std::cout << real_sub << std::endl;
+	std::cout << "Product: " 
+			  << real_sub.get_depth()*real_sub.get_horizontal()
+			  << std::endl;
 }

@@ -23,7 +23,7 @@ class Submarine {
 };
 
 // helper function to init vector of instructions
-void read_insructions_from_file(std::string, std::vector<Instruction>);
+void read_instructions_from_file(std::string, std::vector<Instruction>*);
 
 inline std::ostream& operator<<(std::ostream& os, const Submarine& sub)
 {
