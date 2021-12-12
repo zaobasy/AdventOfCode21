@@ -1,16 +1,18 @@
-INCLUDE = $(abspath ../include)
+INCLUDE=$(abspath ../include)
 
-SRC = $(wildcard *.cpp)
-OBJ = $(SRC:.cpp=.o)
+CPPFLAGS= -Wall -std=c++11 -I$(INCLUDE)
+
+SRC=$(wildcard *.cpp)
+OBJ=$(SRC:.cpp=.o)
+DEP=$(OBJ:.o=.d)
 
 all: libAOC21.a
 
 libAOC21.a: $(OBJ)
-	ar -rcs $?
+	ar r libAOC21.a $?
 
 %.o: %.cpp
-	pwd
-	g++ -Wall -c -o $@ %< -I$(INCLUDE)
+	g++ $(CPPFLAGS) -o $@ -c $<  
 
 clean:
 	rm *.a *.o
